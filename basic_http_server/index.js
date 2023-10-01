@@ -4,7 +4,8 @@ const port = 8000;
 
 function reqHandler(request, response){
     console.log(request.url);
-    response.end('Gotcha !!!')
+    response.writeHead(200, {'content-type': 'text-html'})
+    response.end('<h1>Gotcha Render HTML!!!</h1>');
 }
 
 const server = http.createServer(reqHandler);
