@@ -1,7 +1,13 @@
 const http = require('http');
 const port = 8000;
 
-const server = http.createServer();
+
+function reqHandler(request, response){
+    console.log(request.url);
+    response.end('Gotcha !!!')
+}
+
+const server = http.createServer(reqHandler);
 
 
 server.listen(port, function(e){
