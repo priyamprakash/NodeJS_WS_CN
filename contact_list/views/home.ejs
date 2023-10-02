@@ -5,7 +5,28 @@
         </title>
     </head>
     <body>
-        <h2>Rendered from EJS</h2>
+        <h2>Contact List EJS</h2>
+
+        <!-- existing contact list -->
+        <div>
+            <ul>
+                <%for(let i of contact_list){ %>
+                    <li>
+                        <p><%= i.name    %></p>
+                        <p><%= i.phone  %></p>
+
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+
+        <!-- form to add contact -->
+        <form action="/create-contact" method="POST">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="number" name="phone" placeholder="Enter Phone" required>
+
+            <button type="submit">Add Contact</button>
+        </form>
 
     </body>
 </html>
