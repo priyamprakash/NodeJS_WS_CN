@@ -49,11 +49,13 @@ app.get('/practice', function(req, res){
 
 app.post('/create-contact', function(req,res){
     console.log(req.body);
-    contactList.push({
-        name: req.body.name,
-        phone: req.body.phone
-    })
-    return res.redirect('/');
+    // contactList.push({
+    //     name: req.body.name,
+    //     phone: req.body.phone
+    // })
+
+    contactList.push(req.body);
+    return res.redirect('back');
 })
 
 app.listen(port, function(err){
