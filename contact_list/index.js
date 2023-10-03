@@ -6,8 +6,11 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Middle ware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(express.static('assets'));
 
 var contactList = [
     {
