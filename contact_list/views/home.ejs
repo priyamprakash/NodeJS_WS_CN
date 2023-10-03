@@ -3,30 +3,41 @@
         <title>
             <%= locals.title %>
         </title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+        <!-- our css should be below all other styles -->
         <link rel = "stylesheet" href="/css/home.css">
     </head>
     <body>
-        <h2>Contact List EJS</h2>
+        <h2 id="page-heading">
+            <i class="fas fa-address-book"></i>
+            Contact List</h2>
 
         <!-- existing contact list -->
-        <div>
+        <div id="contacts-list-container">
             <ul>
                 <%for(let i of contact_list){ %>
-                    <li>
-                        <p><%= i.name    %></p>
-                        <p><%= i.phone  %></p>
-
+                    <li class="contact">
+                        <div class="details">
+                            <p><%= i.name   %></p>
+                            <p><%= i.phone  %></p>
+                        </div>
+                        <div class="delete-button">
+                            <a href="/delete-contact/<%= i.phone%>">
+                                <i class="fas fa-window-close"></i>
+                            </a>
+                        </div>
                     </li>
                 <%}%>
             </ul>
         </div>
 
         <!-- form to add contact -->
-        <form action="/create-contact" method="POST">
+        <form id="new-contact-form" action="/create-contact" method="POST">
             <input type="text" name="name" placeholder="Enter Name" required>
             <input type="number" name="phone" placeholder="Enter Phone" required>
 
-            <button type="submit">Add Contact</button>
+            <button type="submit">Add</button>
         </form>
 
         <script type="text/javascript" src="/js/home.js">

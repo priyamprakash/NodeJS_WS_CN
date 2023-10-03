@@ -59,6 +59,12 @@ app.post('/create-contact', function(req,res){
 
     contactList.push(req.body);
     return res.redirect('back');
+});
+
+app.get('/delete-contact/:phone', function(req, res){
+    console.log(req.params);
+    let phone = req.params.phone;
+
 })
 
 app.listen(port, function(err){

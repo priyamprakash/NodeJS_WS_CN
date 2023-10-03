@@ -1,3 +1,11 @@
 body{
+   margin: 0;
+   font-family: sans-serif;
+
+}
+
+#page-heading{
     text-align: center;
+    margin-top: 25px;
+    color: grey;
 }
