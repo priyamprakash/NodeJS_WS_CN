@@ -40,8 +40,7 @@ var contactList = [
 app.get('/', function(req, res){
     Contact.find({})
     .then(contacts => {
-        console.log(contacts)
-        
+        // console.log(contacts)
         return res.render('home',  { 
             title : "Contact List",
             contact_list : contacts
@@ -54,6 +53,7 @@ app.get('/', function(req, res){
 
 
 
+
 app.get('/practice', function(req, res){
     return res.render('practice', {
         title : "Play with EJS"
@@ -62,13 +62,6 @@ app.get('/practice', function(req, res){
 
 app.post('/create-contact', function(req,res){
     console.log(req.body);
-    // contactList.push({
-    //     name: req.body.name,
-    //     phone: req.body.phone
-    // })
-
-    // contactList.push(req.body);
-    // return res.redirect('back');
 
     Contact.create({
         name: req.body.name,
@@ -76,26 +69,31 @@ app.post('/create-contact', function(req,res){
     })
     .then(newContact => {
         console.log('******', newContact);
-        return res.redirect('back');
     })
     .catch(err => {
         console.log('Error in creating a contact');
     });
-    
 
+    return res.redirect('back');
 });
 
-app.get('/delete-contact/', function(req, res){
-    console.log(req.query);
-    let phone = req.query.phone;
-    let contactIndex= contactList.findIndex(contact => contact.phone == phone);
 
-    if(contactIndex != -1) {
-         contactList.splice(contactIndex,1);
-         return res.redirect('back');
-    }
-  
-})
+
+app.get('/delete-contact', function(req, res){
+    console.log(req.query);
+    let id = req.query.id;
+   
+    Contact.findByIdAndDelete(id)
+    .then(() => {
+        console.log('Contact deleted successfully');
+    })
+    .catch(err => {
+        console.log('Error deleting object from db');
+    });
+    
+    return res.redirect('back');
+});
+
 
 app.listen(port, function(err){
 
