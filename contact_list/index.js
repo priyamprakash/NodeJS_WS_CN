@@ -38,12 +38,20 @@ var contactList = [
 ]
 
 app.get('/', function(req, res){
-    return res.render('home', 
-    { 
-        title : "Contact List",
-        contact_list : contactList
+    Contact.find({})
+    .then(contacts => {
+        console.log(contacts)
+        
+        return res.render('home',  { 
+            title : "Contact List",
+            contact_list : contacts
         });
+    })
+    .catch(err => {
+        console.log('Error in fetching contacts from db');
+    });
 });
+
 
 
 app.get('/practice', function(req, res){
